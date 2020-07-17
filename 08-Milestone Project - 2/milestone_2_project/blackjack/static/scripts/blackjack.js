@@ -30,7 +30,7 @@ I will also try to comment the code better for future updates :D
 /*global $, confirm, Game, Player, renderCard, Card, setActions,
 resetBoard, showBoard, showAlert, getWinner, jQuery, wager */
 
-(function () {
+$(function () {
 
 /*****************************************************************/
 /*************************** Globals *****************************/
@@ -733,7 +733,10 @@ resetBoard, showBoard, showAlert, getWinner, jQuery, wager */
 	$('#newGame, #cancel').on('click', function(e) { e.preventDefault(); });
 	$('#cancel').on('click', function() { $('#myModal').modal('hide'); });
 	$('#wager').val(100);
-	$('#cash span').html(player.getCash());
+
+	$.getJSON( "./player/money", function( data ) {
+      $('#cash span').html(data.money);
+    });
 	player.getBank();
 
-}());
+});
